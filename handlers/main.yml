@@ -1,0 +1,7 @@
+---
+# handlers file for ssh_hardening
+- name: SSH Hardening | Restart openssh server
+  service:
+    name: sshd
+    state: restarted
+    enabled: true

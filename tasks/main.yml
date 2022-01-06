@@ -1,0 +1,33 @@
+---
+# tasks file for ssh_hardening
+- name: SSHD Hardening | Include Asserts
+  include_tasks: 0000-pre-install-checks.yml
+  tags:
+    - always
+  args:
+    apply:
+      tags:
+        - always
+
+- name: SSHD Hardening | Include Variables
+  include_vars: "vars-{{ ansible_os_family }}.yml"
+  tags:
+    - always
+
+- name: SSHD Hardening | Install Packages Archlinux
+  include_tasks: "0100-install-{{ ansible_os_family }}.yml"
+  tags:
+    - always
+  args:
+    apply:
+      tags:
+        - always
+
+- name: Linux Patching | Setup Host Network Information
+  include_tasks: 0200-ssh-security.yml
+  tags:
+    - always
+  args:
+    apply:
+      tags:
+        - always
